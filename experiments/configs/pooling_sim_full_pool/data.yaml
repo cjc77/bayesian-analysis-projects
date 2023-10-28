@@ -1,0 +1,17 @@
+N_students_per_class: 30
+N_classes: 10
+
+# Global intercept (average exam score when study hours = 0)
+beta_0: 50
+# Slope (effect of study hours on exam score)
+beta_1: 3
+# Standard deviation for classroom-level random effects
+sigma_class: 4
+# Standard deviation for student-level random errors
+sigma_student: 5
+max_study_hours: 20
+
+seed: 42
+
+
+output_dir: "data/sim_classroom_test_v1_30_10"

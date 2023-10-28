@@ -1,2 +1,14 @@
+# Local files
+.virtual_documents/
+scratchpad.md
+
 # Jupyter
 .ipynb_checkpoints
+
+# Saved results
+experiments/results/*
+!experiments/results/.gitkeep
+
+# Data
+data/*
+!data/.gitkeep
