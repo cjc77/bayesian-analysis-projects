@@ -10,12 +10,9 @@ data {
 }
 
 parameters {
-    // real beta_0;  // Intercept
-    // real beta_1;  // Slope
-
-    // Latent variable for beta_0
+    // z variable for beta_0 reparam trick
     real z_beta_0;
-    // Latent variable for beta_1
+    // z variable for beta_1 reparam trick
     real z_beta_1;
     // Residual standard deviation
     real<lower=0> sigma_r;
