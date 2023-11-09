@@ -26,10 +26,10 @@ parameters {
 transformed parameters {
     vector[n_indiv] beta_0;
     vector[n_indiv] beta_1;
-    // Prior N(50, 10)
-    beta_0 = 50.0 + 10.0 * z_beta_0;
-    // Prior N(0, 10)
-    beta_1 = 10.0 * z_beta_1;
+    // Prior N(150, 10)
+    beta_0 = 150.0 + 10.0 * z_beta_0;
+    // Prior N(0, 3)
+    beta_1 = 3.0 * z_beta_1;
 }
 
 model {
