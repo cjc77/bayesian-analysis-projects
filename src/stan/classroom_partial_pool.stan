@@ -1,5 +1,5 @@
 data {
-    // We are doing NO pooling of the intercept, so don't need to include group-level data
+    // We are doing NO pooling, so don't need to include group-level data
     // but do need individual-level data
 
     // Total number of observations
@@ -10,8 +10,8 @@ data {
     vector[N] y;
     // Predictor
     vector[N] x;
-    // Individual ID
-    int indiv_id[N];
+    // Group ID
+    int group_id[N];
 }
 
 parameters {
@@ -20,7 +20,7 @@ parameters {
     // z variable for beta_1 reparam trick
     real z_beta_1;
     // Residual standard deviation
-    real<lower=0> sigma_r;
+    vector<lower=0>[n_indiv] sigma_r;
 }
 
 transformed parameters {
@@ -40,5 +40,5 @@ model {
 
     // Likelihood
     // individual intercepts & slopes (vectorized)
-    y ~ normal(beta_0[indiv_id] + beta_1 * x, sigma_r);
+    y ~ normal(beta_0[indiv_id] + beta_1[indiv_id] .* x, sigma_r[indiv_id]);
 }
