@@ -3,5 +3,5 @@ n_chains: 4
 n_samp: 2000
 n_warmup_samp: 1000
 
-model_file_path: "src/stan/classroom_full_pool.stan"
+model_file_path: "src/stan/full_pool.stan"
 data_config: "pooling_sim"
