@@ -3,10 +3,18 @@ data {
 
     // Total number of observations
     int<lower=0> N;
+
     // Response
     vector[N] y;
     // Predictor
     vector[N] x;
+    
+    // Mean for beta_0 prior
+    real beta_0_mu_prior;
+    // SD for beta_0 prior
+    real<lower=0> beta_0_sigma_prior;
+    // SD for beta_1 prior
+    real<lower=0> beta_1_sigma_prior;
 }
 
 parameters {
@@ -21,10 +29,10 @@ parameters {
 transformed parameters {
     real beta_0;
     real beta_1;
-    // Prior N(150, 10)
-    beta_0 = 150.0 + 10.0 * z_beta_0;
-    // Prior N(0, 3)
-    beta_1 = 3.0 * z_beta_1;
+    // Prior N(beta_0_mu_prior, beta_0_sigma_prior)
+    beta_0 = beta_0_mu_prior + beta_0_sigma_prior * z_beta_0;
+    // Prior N(0, beta_1_sigma_prior)
+    beta_1 = beta_1_sigma_prior * z_beta_1;
 }
 
 model {

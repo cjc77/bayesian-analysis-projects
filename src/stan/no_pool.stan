@@ -6,12 +6,22 @@ data {
     int<lower=0> N;
     // Number of individuals
     int<lower=0> n_indiv;
+
     // Response
     vector[N] y;
     // Predictor
     vector[N] x;
+    
     // Individual ID
     int indiv_id[N];
+
+    // Mean for beta_0 prior
+    vector[n_indiv] beta_0_mu_prior;
+    // SD for beta_0 prior
+    vector<lower=0>[n_indiv] beta_0_sigma_prior;
+    // SD for beta_1 prior
+    real<lower=0> beta_1_sigma_prior;
+
 }
 
 parameters {
@@ -26,10 +36,10 @@ parameters {
 transformed parameters {
     vector[n_indiv] beta_0;
     real beta_1;
-    // Prior N(150, 10)
-    beta_0 = 150.0 + 10.0 * z_beta_0;
-    // Prior N(0, 3)
-    beta_1 = 3.0 * z_beta_1;
+    // Prior N(beta_0_mu_prior, beta_0_sigma_prior)
+    beta_0 = beta_0_mu_prior + beta_0_sigma_prior .* z_beta_0;
+    // Prior N(0, beta_1_sigma_prior)
+    beta_1 = beta_1_sigma_prior * z_beta_1;
 }
 
 model {
