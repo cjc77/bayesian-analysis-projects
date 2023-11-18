@@ -18,7 +18,7 @@ data {
     // Mean for beta_0 prior
     vector[n_indiv] beta_0_mu_prior;
     // SD for beta_0 prior
-    vector<lower=0>[n_indiv] beta_0_sigma_prior;
+    real<lower=0> beta_0_sigma_prior;
     // SD for beta_1 prior
     real<lower=0> beta_1_sigma_prior;
 
@@ -37,7 +37,7 @@ transformed parameters {
     vector[n_indiv] beta_0;
     real beta_1;
     // Prior N(beta_0_mu_prior, beta_0_sigma_prior)
-    beta_0 = beta_0_mu_prior + beta_0_sigma_prior .* z_beta_0;
+    beta_0 = beta_0_mu_prior + beta_0_sigma_prior * z_beta_0;
     // Prior N(0, beta_1_sigma_prior)
     beta_1 = beta_1_sigma_prior * z_beta_1;
 }
