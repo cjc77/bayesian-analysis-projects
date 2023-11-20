@@ -32,10 +32,10 @@ parameters {
     real z_beta_1;
     // Residual standard deviation
     real<lower=0> sigma_r;
-    // Variance for group-level means
-    real<lower=0> sigma_group;
-    // Variance for individual-level means
-    real<lower=0> sigma_indiv;
+    // // Variance for group-level means
+    // real<lower=0> sigma_group;
+    // // Variance for individual-level means
+    // real<lower=0> sigma_indiv;
 }
 
 transformed parameters {
@@ -43,16 +43,19 @@ transformed parameters {
     vector[n_indiv] beta_0;
     real beta_1;
 
-    u_0 = beta_0_mu_group_prior + sigma_group * z_u_0;
-    beta_0 = u_0[group_id_map] + sigma_indiv * z_beta_0;
+    // u_0 = beta_0_mu_group_prior + sigma_group * z_u_0;
+    // beta_0 = u_0[group_id_map] + sigma_indiv * z_beta_0;
+    u_0 = beta_0_mu_group_prior + beta_0_sigma_group_prior * z_u_0;
+    beta_0 = u_0[group_id_map] + beta_0_sigma_group_prior * z_beta_0;
+
     beta_1 = beta_1_sigma_prior * z_beta_1;
 }
 
 model {
     // Priors
     sigma_r ~ normal(0, 5);
-    sigma_group ~ normal(0, beta_0_sigma_group_prior);
-    sigma_indiv ~ normal(0, beta_0_sigma_indiv_prior);
+    // sigma_group ~ normal(0, beta_0_sigma_group_prior);
+    // sigma_indiv ~ normal(0, beta_0_sigma_indiv_prior);
 
     z_u_0 ~ normal(0, 1);
     z_beta_0 ~ normal(0, 1);
