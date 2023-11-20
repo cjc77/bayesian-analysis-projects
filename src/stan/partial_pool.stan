@@ -46,7 +46,7 @@ transformed parameters {
     // u_0 = beta_0_mu_group_prior + sigma_group * z_u_0;
     // beta_0 = u_0[group_id_map] + sigma_indiv * z_beta_0;
     u_0 = beta_0_mu_group_prior + beta_0_sigma_group_prior * z_u_0;
-    beta_0 = u_0[group_id_map] + beta_0_sigma_group_prior * z_beta_0;
+    beta_0 = u_0[group_id_map] + beta_0_sigma_indiv_prior * z_beta_0;
 
     beta_1 = beta_1_sigma_prior * z_beta_1;
 }
