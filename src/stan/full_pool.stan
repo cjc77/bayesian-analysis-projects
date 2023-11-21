@@ -22,6 +22,8 @@ parameters {
     real z_beta_0;
     // z variable for beta_1 reparam trick
     real z_beta_1;
+    // Mean for beta_1 prior
+    real beta_1_mu_prior;
     // Residual standard deviation
     real<lower=0> sigma_r;
 }
@@ -32,7 +34,7 @@ transformed parameters {
     // Prior N(beta_0_mu_prior, beta_0_sigma_prior)
     beta_0 = beta_0_mu_prior + beta_0_sigma_prior * z_beta_0;
     // Prior N(0, beta_1_sigma_prior)
-    beta_1 = beta_1_sigma_prior * z_beta_1;
+    beta_1 = beta_1_mu_prior + beta_1_sigma_prior * z_beta_1;
 }
 
 model {

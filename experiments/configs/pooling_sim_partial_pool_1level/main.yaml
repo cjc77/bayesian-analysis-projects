@@ -5,5 +5,5 @@ n_warmup_samp: 1000
 # n_samp: 20
 # n_warmup_samp: 10
 
-model_file_path: "src/stan/partial_pool.stan"
+model_file_path: "src/stan/partial_pool_1level.stan"
 data_config: "pooling_sim"
