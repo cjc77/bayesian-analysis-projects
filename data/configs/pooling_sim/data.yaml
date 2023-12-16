@@ -1,0 +1,22 @@
+N_per_group: 50
+N_groups: 10
+
+# Global intercept (average y when x = 0)
+beta_0: 10
+# Slope (effect of x on y)
+beta_1: 1
+# Standard deviation for group-level random effects
+sigma_group: 5
+# Standard deviation for individual-level random effects
+sigma_individual: 1
+# Measurement error variance
+sigma_measurement: 0.5
+
+min_x: 0
+max_x: 4
+
+seed: 42
+n_measurements: 3
+
+
+output_dir: "data/sim_groups_v1_30_10"

@@ -12,3 +12,4 @@ experiments/results/*
 # Data
 data/*
 !data/.gitkeep
+!data/configs
