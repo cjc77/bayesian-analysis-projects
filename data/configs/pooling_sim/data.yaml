@@ -9,7 +9,7 @@ beta_1: 1
 sigma_group: 5
 # Standard deviation for individual-level random effects
 sigma_individual: 1
-# Measurement error variance
+# Standard deviation for measurement error
 sigma_measurement: 0.5
 
 min_x: 0
